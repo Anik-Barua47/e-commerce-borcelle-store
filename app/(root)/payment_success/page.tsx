@@ -9,7 +9,7 @@ const SuccessfulPayment = () => {
 
   useEffect(() => {
     cart.clearCart();
-  }, []);
+  }, [cart]);
 
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-5">
@@ -24,5 +24,7 @@ const SuccessfulPayment = () => {
     </div>
   );
 };
+
+export const dynamic = "force-dynamic";
 
 export default SuccessfulPayment;

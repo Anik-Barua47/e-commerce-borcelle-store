@@ -3,7 +3,7 @@
 import useCart from "@/lib/hooks/useCart";
 
 import { useUser } from "@clerk/nextjs";
-import { MinusCircle, PlusCircle, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -53,7 +53,10 @@ const Cart = () => {
         ) : (
           <div>
             {cart.cartItems.map((cartItem) => (
-              <div className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between">
+              <div
+                key={cartItem.quantity}
+                className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between"
+              >
                 <div className="flex items-center">
                   <Image
                     src={cartItem.item.media[0]}
@@ -104,7 +107,6 @@ const Cart = () => {
                   </button>
                 </div>
 
-
                 <Trash
                   className="hover:text-red-1 cursor-pointer"
                   onClick={() => cart.removeItem(cartItem.item._id)}
@@ -118,8 +120,9 @@ const Cart = () => {
       <div className="w-1/3 max-lg:w-full flex flex-col gap-8 bg-grey-1 rounded-lg px-4 py-5">
         <p className="text-heading4-bold pb-4">
           Summary{" "}
-          <span>{`(${cart.cartItems.length} ${cart.cartItems.length > 1 ? "items" : "item"
-            })`}</span>
+          <span>{`(${cart.cartItems.length} ${
+            cart.cartItems.length > 1 ? "items" : "item"
+          })`}</span>
         </p>
         <div className="flex justify-between text-body-semibold">
           <span>Total Amount</span>
@@ -135,5 +138,7 @@ const Cart = () => {
     </div>
   );
 };
+
+export const dynamic = "force-dynamic";
 
 export default Cart;

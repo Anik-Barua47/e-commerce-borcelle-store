@@ -8,7 +8,7 @@ const Collections = async () => {
   //   console.log(collections);
 
   return (
-    <div className="max-w-7xl mx-auto text-center space-y-16">
+    <div className="max-w-7xl mx-auto text-center space-y-16 mt-10">
       <h2 className="text-3xl font-semibold tracking-tight">Collections</h2>
       <div className="flex gap-10 justify-center">
         {collections.map((collection: CollectionType) => (

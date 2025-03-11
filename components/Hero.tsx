@@ -63,7 +63,7 @@ const Hero: React.FC<HeroProps> = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
           <Button asChild size="lg">
-            <Link href="/products">Shop Collection</Link>
+            <Link href="/collections">Collection</Link>
           </Button>
           <Button variant="outline" size="lg">
             Learn More

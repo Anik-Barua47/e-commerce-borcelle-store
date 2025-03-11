@@ -2,7 +2,7 @@ import { getProducts } from "@/lib/actions/action";
 import { FeaturedProduct } from "./featured-product";
 
 const ProductList = async () => {
-  const products = await getProducts(); // Select only the first two products
+  const products = await getProducts();
 
   return (
     <section className="py-24 px-4 sm:px-6 bg-secondary/30">

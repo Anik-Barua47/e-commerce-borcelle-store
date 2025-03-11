@@ -17,13 +17,26 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
 import useCart from "@/lib/hooks/useCart";
+import { useRouter } from "next/navigation";
+import useSWR from "swr";
 
 export function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSearchInput, setShowSearchInput] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const router = useRouter();
 
   const { user } = useUser();
+
+  console.log(user);
+
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data: signedInUser, mutate } = useSWR(
+    user ? "/api/users" : null,
+    fetcher
+  );
 
   const cart = useCart();
 
@@ -54,7 +67,7 @@ export function NavBar() {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="text-xl font-semibold tracking-tight">
+        <Link href="/" className="text-2xl font-bold tracking-tight">
           NORDIC
         </Link>
 
@@ -69,7 +82,7 @@ export function NavBar() {
             href="/products"
             className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors link-underline"
           >
-            Shop
+            Products
           </Link>
           <Link
             href="/collections"
@@ -92,15 +105,18 @@ export function NavBar() {
                 type="search"
                 placeholder="Search products..."
                 className="w-[220px] h-9"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyUp={() => router.push(`/search/${query}`)}
               />
               <Button
                 variant="ghost"
-                size="icon"
+                size="sm"
                 className="absolute right-0"
                 onClick={toggleSearchInput}
                 aria-label="Close search"
               >
-                <X className="h-4 w-4" />
+                <X className="h-3 w-3" />
               </Button>
             </div>
           ) : (
@@ -125,9 +141,9 @@ export function NavBar() {
                   aria-label="Wishlist"
                 >
                   <Heart className="h-5 w-5" />
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center">
-                    0
-                  </span>
+                  {/* <span className="absolute -top-1 -right-1 w-4 h-4 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center">
+                    {signedInUser?.wishlist.length}
+                  </span> */}
                 </Button>
               </Link>
               <Link href="/orders">

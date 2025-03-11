@@ -73,7 +73,6 @@ const SingleProductDetails = ({
     setQuantity(quantity + 1);
   };
 
-
   const addToWishlist = async () => {
     try {
       setIsLoading(true);
@@ -89,13 +88,18 @@ const SingleProductDetails = ({
 
       if (updatedUser?.wishlist) {
         setSignedInUser(updatedUser);
-        const isItemInWishlist = updatedUser.wishlist.includes(productDetails._id);
+        const isItemInWishlist = updatedUser.wishlist.includes(
+          productDetails._id
+        );
         setIsLiked(isItemInWishlist);
 
         // Show different toast messages based on state
-        toast(isItemInWishlist ? "Added to wishlist" : "Removed from wishlist", {
-          description: productDetails?.title,
-        });
+        toast(
+          isItemInWishlist ? "Added to wishlist" : "Removed from wishlist",
+          {
+            description: productDetails?.title,
+          }
+        );
       }
     } catch (error) {
       console.error("[wishlist_POST]", error);
@@ -103,8 +107,6 @@ const SingleProductDetails = ({
       setIsLoading(false);
     }
   };
-
-
 
   return (
     <div className="min-h-screen flex flex-col mt-10">
@@ -137,7 +139,6 @@ const SingleProductDetails = ({
               </li>
               <li className="text-foreground font-medium truncate">
                 {productDetails?.title || "No title available"}
-
               </li>
             </ol>
           </nav>
@@ -146,21 +147,25 @@ const SingleProductDetails = ({
         <section className="product-wrapper py-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="relative">
-              <ProductSlider images={productDetails?.media || []} productName={productDetails?.title} />
+              <ProductSlider
+                images={productDetails?.media || []}
+                productName={productDetails?.title}
+              />
             </div>
             {/* Product info */}
             <div className="space-y-8">
               <div>
                 <h1 className="text-3xl font-semibold tracking-tight">
                   {productDetails?.title}
-
                 </h1>
                 <p className="text-2xl font-medium mt-2">
                   ${productDetails?.price?.toFixed(2) || "0.00"}
                 </p>
               </div>
 
-              <p className="text-muted-foreground">{productDetails?.description}</p>
+              <p className="text-muted-foreground">
+                {productDetails?.description}
+              </p>
 
               {/* Color options */}
               {productDetails.colors.length > 0 && (
@@ -207,7 +212,7 @@ const SingleProductDetails = ({
                         type="button"
                         onClick={() => setSelectedSize(size)}
                         className={cn(
-                          "h-10 w-10 rounded-md border text-sm transition-all",
+                          "px-5 py-2 rounded-md border text-sm transition-all",
                           selectedSize === size
                             ? "border-primary bg-primary/5"
                             : "border-input hover:border-primary/50"
@@ -235,9 +240,7 @@ const SingleProductDetails = ({
                   <input
                     type="number"
                     value={quantity}
-                    onChange={(e) =>
-                      setQuantity(parseInt(e.target.value) || 1)
-                    }
+                    onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
                     min="1"
                     className="w-12 h-10 text-center border-none focus:outline-none focus:ring-0 bg-transparent"
                   />
@@ -251,8 +254,6 @@ const SingleProductDetails = ({
                 </div>
               </div>
 
-
-
               {/* Actions */}
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Button
@@ -260,11 +261,15 @@ const SingleProductDetails = ({
                   className="flex-1"
                   onClick={() => {
                     if (!selectedColor) {
-                      toast.error("Please select a color before adding to cart!");
+                      toast.error(
+                        "Please select a color before adding to cart!"
+                      );
                       return;
                     }
                     if (productDetails.sizes.length > 0 && !selectedSize) {
-                      toast.error("Please select a size before adding to cart!");
+                      toast.error(
+                        "Please select a size before adding to cart!"
+                      );
                       return;
                     }
 
@@ -280,9 +285,11 @@ const SingleProductDetails = ({
                   Add to Cart
                 </Button>
 
-
                 <Button variant="outline" size="lg" onClick={addToWishlist}>
-                  <Heart className="mr-2 h-5 w-5" fill={`${isLiked ? "black" : "white"}`} />
+                  <Heart
+                    className="mr-2 h-5 w-5"
+                    fill={`${isLiked ? "black" : "white"}`}
+                  />
                   Wishlist
                 </Button>
                 <Button variant="outline" size="icon">
@@ -315,8 +322,7 @@ const SingleProductDetails = ({
           </div>
         </section>
       </main>
-
-    </div >
+    </div>
   );
 };
 
