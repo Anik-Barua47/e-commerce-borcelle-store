@@ -30,14 +30,3 @@ const ProductDetails = async ({
 export const dynamic = "force-dynamic";
 
 export default ProductDetails;
-
-{
-  /* <section className="product-wrapper py-16 mt-8 border-t border-border">
-          <h2 className="text-2xl font-semibold tracking-tight mb-8">You May Also Like</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {relatedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section> */
-}

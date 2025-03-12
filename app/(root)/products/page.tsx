@@ -8,7 +8,7 @@ import React from "react";
 const Products = async () => {
   const products = await getProducts();
   return (
-    <div className="mt-20">
+    <div className="my-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
         <nav className="text-sm text-muted-foreground">
           <ol className="flex items-center space-x-2">

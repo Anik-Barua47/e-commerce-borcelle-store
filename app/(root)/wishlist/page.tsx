@@ -82,7 +82,7 @@ const Wishlist = () => {
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-10 w-[600px]">
+      <div className="grid grid-cols-2 gap-10 w-[600px] my-10">
         {wishlist.map((product) => (
           <div className="relative" key={product._id}>
             <ProductCard product={product} />

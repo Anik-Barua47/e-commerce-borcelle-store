@@ -1,13 +1,14 @@
+import { Button } from "@/components/ui/button";
 import { getOrders } from "@/lib/actions/action";
 import { auth } from "@clerk/nextjs/server";
 import { Package } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Orders = async () => {
   const { userId } = await auth();
   const orders = await getOrders(userId as string);
 
-  console.log(orders[0].products);
 
   return (
     <div className="px-8 md:px-6 lg:px-0 py-5 max-sm:px-3 max-w-7xl mx-auto mt-20">
@@ -18,7 +19,18 @@ const Orders = async () => {
 
       {!orders ||
         (orders.length === 0 && (
-          <p className="text-body-bold my-5">You have no orders yet.</p>
+          <div className="py-16 text-center">
+            <Package className="h-20 w-20 text-muted-foreground/30 mx-auto mb-6" />
+            <h2 className="text-xl font-medium mb-2">No orders yet</h2>
+            <p className="text-muted-foreground mb-6">
+              When you place an order, it will appear here
+            </p>
+            <Button asChild>
+              <Link href="/">
+                Start Shopping
+              </Link>
+            </Button>
+          </div>
         ))}
 
       <div className="flex flex-col gap-10">

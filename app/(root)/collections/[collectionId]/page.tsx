@@ -12,7 +12,7 @@ const CollectionDetails = async ({
   //   console.log(collectionDetails);
 
   return (
-    <div className="max-w-7xl mx-auto mt-20 md:px-10 py-5 flex flex-col items-center gap-8">
+    <div className="max-w-7xl mx-auto my-20 md:px-10 py-5 flex flex-col items-center gap-8">
       <Image
         src={collectionDetails.image}
         width={1500}

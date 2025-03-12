@@ -32,12 +32,13 @@ const About = () => {
             </p>
           </div>
 
-          <div className="rounded-lg overflow-hidden h-[400px]">
+          <div className="rounded-lg overflow-hidden w-[600px] h-[400px]">
             <Image
               src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
               alt="Our workspace"
-              className="w-full h-full object-cover"
-              fill
+              className="object-cover"
+              width={600}
+              height={400}
             />
           </div>
         </div>
