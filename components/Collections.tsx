@@ -5,7 +5,6 @@ import React from "react";
 
 const Collections = async () => {
   const collections = await getCollections();
-  //   console.log(collections);
 
   return (
     <div className="max-w-7xl mx-auto text-center space-y-16 mt-10">

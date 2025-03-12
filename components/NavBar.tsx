@@ -30,8 +30,6 @@ export function NavBar() {
 
   const { user } = useUser();
 
-  console.log(user);
-
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data: signedInUser, mutate } = useSWR(
     user ? "/api/users" : null,

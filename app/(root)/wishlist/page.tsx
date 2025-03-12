@@ -33,8 +33,6 @@ const Wishlist = () => {
     }
   }, [user]);
 
-  //   console.log(signedInUser);
-
   const getWishlistProducts = async () => {
     setLoading(true);
 

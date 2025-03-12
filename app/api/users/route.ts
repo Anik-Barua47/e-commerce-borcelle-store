@@ -7,7 +7,6 @@ import { NextRequest, NextResponse } from "next/server";
 export const GET = async (req: NextRequest) => {
   try {
     const { userId } = await auth();
-    console.log(userId);
 
     if (!userId) {
       return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {

@@ -89,7 +89,6 @@ export function FeaturedProduct({
       });
 
       const updatedUser = await res.json();
-      console.log("Updated User Data:", updatedUser); // Debugging log
 
       if (updatedUser?.wishlist) {
         setSignedInUser(updatedUser);
